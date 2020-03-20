@@ -1,0 +1,7 @@
+<h1>id: <%= @todo.id %> のメッセージ編集ページ</h1>
+<%= form_with(model: @todo, local: true) do |f| %>
+<%= f.label :thing, 'やること' %>
+<%= f.text_field :thing %>
+<%= f.submit '投稿' %><% end %>
+<%= link_to '一覧に戻る', todos_path %>
+

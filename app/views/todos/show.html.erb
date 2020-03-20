@@ -1,0 +1,6 @@
+<h1>id: <%= @todo.id %> のメッセージ詳細ページ</h1>
+<p><%= @todo.thing %></p>
+<%= link_to '一覧に戻る', todos_path %>
+<%= link_to 'このメッセージを編集する', edit_todo_path(@todo) %>
+<%= link_to 'このメッセージを削除する', @todo, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+
