@@ -1,0 +1,9 @@
+<%= form_with(model: todo, local: true) do |f| %>
+<%= f.label :thing, 'やること' %>
+<%= f.text_field :thing %>
+
+<%= f.label :memo, 'メモ' %>
+<%= f.text_field :memo %>
+
+
+<%= f.submit '投稿' %><% end %>

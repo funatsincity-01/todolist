@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_20_104700) do
+ActiveRecord::Schema.define(version: 2020_03_21_061112) do
 
   create_table "todos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "thing"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "memo"
   end
 
 end

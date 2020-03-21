@@ -1,10 +1,12 @@
 class TodosController < ApplicationController
+    before_action :set_todo, only: [:show, :edit, :update, :destroy]
+    
     def index
         @todos = Todo.all
     end
 
     def show
-        @todo = Todo.find(params[:id])
+        set_todo
     end
 
     def new
@@ -16,6 +18,7 @@ class TodosController < ApplicationController
         if @todo.save
             flash[:success] = 'Todo が正常に投稿されました'
             redirect_to @todo
+            #　redirect_to @todo　は　redirect_to todo_path(@todo)　と同じ。
         else
             flash.now[:danger] = 'Todo が投稿されませんでした'
             render :new
@@ -23,11 +26,11 @@ class TodosController < ApplicationController
     end
 
     def edit
-        @todo = Todo.find(params[:id])
+        set_todo
     end
 
     def update
-    	@todo = Todo.find(params[:id])
+    	set_todo
 	 
         if @todo.update(todo_params)
 	        flash[:success] = 'Todo は正常に更新されました'
@@ -39,7 +42,7 @@ class TodosController < ApplicationController
     end
 
     def destroy
-        @todo = Todo.find(params[:id])
+        set_todo
         @todo.destroy
         flash[:success] = 'Todo は正常に削除されました'
         redirect_to todos_url
@@ -48,6 +51,11 @@ class TodosController < ApplicationController
     private
     # Strong Parameter
     def todo_params
-        params.require(:todo).permit(:thing)
+        params.require(:todo).permit(:thing, :memo)
     end
+    
+    def set_todo
+        @todo = Todo.find(params[:id])    
+    end
+    
 end
